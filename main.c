@@ -27,12 +27,15 @@ int main(int argc, char** argv){
 			BeginDrawing();
 			BeginMode3D(camera);
 			ClearBackground(TERMINAL_GREEN);
-	                DrawLine3D((Vector3){INF,0,0},(Vector3){NINF,0,0},RED);
-                        DrawLine3D((Vector3){0,INF,0},(Vector3){0,NINF,0},BLUE);
-                        DrawLine3D((Vector3){0,0,INF},(Vector3){0,0,NINF},GREEN);
-			updating_positions(particles,frame_time);
+//	                DrawLine3D((Vector3){INF,0,0},(Vector3){NINF,0,0},RED);
+//                      DrawLine3D((Vector3){0,INF,0},(Vector3){0,NINF,0},BLUE);
+//                      DrawLine3D((Vector3){0,0,INF},(Vector3){0,0,NINF},GREEN);
+			updating_positions_and_trails(particles,frame_time);
 			for(int i=0;i<NUM_PARTICLE;i++){
 				DrawSphere(particles[i].position,PARTICLE_SIZE,WHITE);
+				for(int j=0;j<NUM_TRAIL;j++){
+					DrawPoint3D(particles[i].trail[j],WHITE);
+				}
 			}
 			EndMode3D();
 			EndDrawing();

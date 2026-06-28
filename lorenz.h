@@ -15,7 +15,7 @@
 #define Z_UP (Vector3){0,1,0}
 #define RANDOM_METRIC 20
 #define NUM_PARTICLE 30
-#define FPS 60
+#define FPS 1000
 #define PRANTL 10
 #define RAYLEIGH 28
 #define BETA 2.67
@@ -33,5 +33,5 @@ typedef struct particle{
 
 void camera_init(Camera3D *camera, Vector3 positon, Vector3 target);
 void particles_init(Particle particles[NUM_PARTICLE]);
-void updating_positions(Particle particles[NUM_PARTICLE],double frame_time);
+void updating_positions_and_trails(Particle particles[NUM_PARTICLE],double frame_time);
 #endif
