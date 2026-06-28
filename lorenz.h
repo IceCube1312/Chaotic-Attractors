@@ -11,10 +11,18 @@
 
 #define NUM_TRAIL 300
 #define FOV 90
-#define CAM_POS (Vector3){300,300,300}
+#define CAM_POS (Vector3){50,0,50}
 #define Z_UP (Vector3){0,1,0}
-#define RAMDOM_METRIC 20
-#define NUM_PARTICLE 300
+#define RANDOM_METRIC 20
+#define NUM_PARTICLE 30
+#define FPS 60
+#define PRANTL 10
+#define RAYLEIGH 28
+#define BETA 2.67
+#define TERMINAL_GREEN (Color){1, 22, 5, 255}
+#define PARTICLE_SIZE 0.1
+#define INF 9999999999
+#define NINF -9999999999
 
 typedef struct particle{
     Vector3 position;
@@ -24,6 +32,6 @@ typedef struct particle{
 }Particle;
 
 void camera_init(Camera3D *camera, Vector3 positon, Vector3 target);
-void particles_init(Particle particles[NUM_PARICLE]);
-
+void particles_init(Particle particles[NUM_PARTICLE]);
+void updating_positions(Particle particles[NUM_PARTICLE],double frame_time);
 #endif
