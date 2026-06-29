@@ -16,13 +16,13 @@ void particles_init(Particle particles[NUM_PARTICLE]){
         double z = (rand() % (2* RANDOM_METRIC))-RANDOM_METRIC;
         particles[i].position=(Vector3){x,y,z};
 	for(int p=0;p<NUM_TRAIL;p++){
-		particles[i].trail[p]=Vector3Zero();
+		particles[i].trail[p]=particles[i].position;
 	}
 	particles[i].trail_head=0;
     }
 }
 
-void updating_positions_and_trails(Particle particles[NUM_PARTICLE],double frame_time){
+void updating_positions(Particle particles[NUM_PARTICLE],double frame_time){
 	for(int i=0;i<NUM_PARTICLE;i++){
 		float x = particles[i].position.x; 
 		float y = particles[i].position.y; 

@@ -10,7 +10,7 @@ int main(int argc, char** argv){
 
 	Camera3D camera;
 	Vector3 camera_pos=CAM_POS;
-	Vector3 camera_target=Vector3Zero();
+	Vector3 camera_target=TARGET_CAM;
 
 	camera_init(&camera,camera_pos,camera_target);
 
@@ -27,14 +27,15 @@ int main(int argc, char** argv){
 			BeginDrawing();
 			BeginMode3D(camera);
 			ClearBackground(TERMINAL_GREEN);
-//	                DrawLine3D((Vector3){INF,0,0},(Vector3){NINF,0,0},RED);
-//                      DrawLine3D((Vector3){0,INF,0},(Vector3){0,NINF,0},BLUE);
-//                      DrawLine3D((Vector3){0,0,INF},(Vector3){0,0,NINF},GREEN);
-			updating_positions_and_trails(particles,frame_time);
+			updating_positions(particles,frame_time);
 			for(int i=0;i<NUM_PARTICLE;i++){
 				DrawSphere(particles[i].position,PARTICLE_SIZE,WHITE);
-				for(int j=0;j<NUM_TRAIL;j++){
-					DrawPoint3D(particles[i].trail[j],WHITE);
+				for(int j=0;j<NUM_TRAIL-1;j++){
+					int current_index = (particles[i].trail_head -1 - j + NUM_TRAIL) % NUM_TRAIL;
+					Vector3 current = particles[i].trail[current_index];
+					int prev_index = (particles[i].trail_head - 2 - j + NUM_TRAIL) % NUM_TRAIL;
+					Vector3 prev_point = particles[i].trail[prev_index];
+					DrawLine3D(current,prev_point,WHITE);
 				}
 			}
 			EndMode3D();
