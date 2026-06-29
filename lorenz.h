@@ -17,6 +17,8 @@
 #define RANDOM_METRIC 5
 #define NUM_PARTICLE 50
 #define CYLIN_RAD 0.1
+#define FPS 60
+#define PARTICLE_SIZE 0.001
 
 #else
 #define CAM_POS (Vector3){30,0,30}
@@ -28,13 +30,13 @@
 #define RANDOM_METRIC 20
 #define NUM_PARTICLE 50
 #define CYLIN_RAD 0.1
+#define FPS 60
+#define PARTICLE_SIZE 0.1
 #endif
 
 #define NUM_TRAIL 300
 #define FOV 90
-#define FPS 60
 #define TERMINAL_GREEN (Color){1, 22, 5, 255}
-#define PARTICLE_SIZE 0.1
 #define INF 9999999999
 #define NINF -9999999999
 #define TRAIL_PER_FRAME 10

@@ -54,11 +54,18 @@ void Draw_trails(Particle particle){
 		int prev_index = (particle.trail_head - 2 - j + NUM_TRAIL) % NUM_TRAIL;
 		Vector3 prev_point = particle.trail[prev_index];
 
+#ifdef HALVORSEN
+		double ratio = j/(double)NUM_TRAIL;
+		int G =  255 * ratio;
+		int B = 255 * ratio;
+		int R = 255 * (1-ratio);
+                DrawCylinderEx(current,prev_point,CYLIN_RAD,CYLIN_RAD,0,(Color){255,G,B,255});
+#else
 		double ratio = j/(double)NUM_TRAIL;
 		int G =  255 * (1-ratio);
 		int B = 255 * ratio;
 		int R = 255 * ratio;
-//   	        DrawLine3D(current,prev_point,(Color){R,255,B,255});
                 DrawCylinderEx(current,prev_point,CYLIN_RAD,CYLIN_RAD,0,(Color){R,255,B,255});
+#endif
 	}
 }
