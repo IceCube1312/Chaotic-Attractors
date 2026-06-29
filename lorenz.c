@@ -30,10 +30,22 @@ void updating_positions(Particle particles[NUM_PARTICLE],double frame_time){
 		particles[i].position.x += (PRANTL* (y-x)) * frame_time;
 		particles[i].position.y += (x*(RAYLEIGH-z) -y) * frame_time;
 		particles[i].position.z += (x*y - BETA * z) * frame_time;
-
-		particles[i].trail[particles[i].trail_head]=particles[i].position;
-
-		particles[i].trail_head=(particles[i].trail_head+1)%NUM_TRAIL;
 	}
 }
-
+void updating_trails(Particle particles[NUM_PARTICLE],int times_per_frame, double frame_time){
+	for(int i=0;i<NUM_PARTICLE;i++){
+		float x = particles[i].position.x;
+		float y = particles[i].position.y;
+		float z = particles[i].position.z;
+    	        Vector3 temp = {x,y,z};
+		for(int j=0;j<times_per_frame;j++){
+			double delta = frame_time/times_per_frame;
+			x=temp.x;y=temp.y;z=temp.z;
+			temp.x += (PRANTL* (y-x)) * delta;
+			temp.y += (x*(RAYLEIGH-z) -y) * delta;
+			temp.z += (x*y - BETA * z) * delta;
+			particles[i].trail[particles[i].trail_head]=temp;
+			particles[i].trail_head=(particles[i].trail_head+1)%NUM_TRAIL;
+		}
+	}
+}

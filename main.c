@@ -28,6 +28,7 @@ int main(int argc, char** argv){
 			BeginMode3D(camera);
 			ClearBackground(TERMINAL_GREEN);
 			updating_positions(particles,frame_time);
+			updating_trails(particles,TRAIL_PER_FRAME,frame_time);
 			for(int i=0;i<NUM_PARTICLE;i++){
 				DrawSphere(particles[i].position,PARTICLE_SIZE,WHITE);
 				for(int j=0;j<NUM_TRAIL-1;j++){
