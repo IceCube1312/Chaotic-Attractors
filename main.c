@@ -2,8 +2,8 @@
 
 int main(int argc, char** argv){
 	
-	const int height = 1080;
-	const int width = 1980;
+	const int height = HEIGHT;
+	const int width = WIDTH;
 
 	InitWindow(width, height,"NAME NAME NAME");
 	assert(IsWindowReady());

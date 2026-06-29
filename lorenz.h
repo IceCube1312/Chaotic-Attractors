@@ -23,9 +23,11 @@
 #define PARTICLE_SIZE 0.1
 #define INF 9999999999
 #define NINF -9999999999
-#define TARGET_CAM (Vector3){0,8,30}
+#define TARGET_CAM (Vector3){0,9,30}
 #define TRAIL_PER_FRAME 10
 #define CYLIN_RAD 0.1
+#define HEIGHT 1080
+#define WIDTH 1980
 
 typedef struct particle{
     Vector3 position;
