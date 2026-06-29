@@ -56,10 +56,10 @@ void Draw_trails(Particle particle){
 
 #ifdef HALVORSEN
 		double ratio = j/(double)NUM_TRAIL;
-		int G =  255 * ratio;
+		int G =  255 * (1-ratio);
 		int B = 255 * ratio;
 		int R = 255 * (1-ratio);
-                DrawCylinderEx(current,prev_point,CYLIN_RAD,CYLIN_RAD,0,(Color){255,G,B,255});
+                DrawCylinderEx(current,prev_point,CYLIN_RAD,CYLIN_RAD,0,(Color){0,G,0,255});
 #else
 		double ratio = j/(double)NUM_TRAIL;
 		int G =  255 * (1-ratio);
