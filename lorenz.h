@@ -9,23 +9,35 @@
 #include <assert.h>
 #include <time.h>
 
-#define NUM_TRAIL 300
-#define FOV 90
+#ifdef HALVORSEN
+#define HAL_A 1.4
+#define CAM_POS (Vector3){4,4,4}
+#define Z_UP (Vector3){0,1,0}
+#define TARGET_CAM (Vector3){0,1,0}
+#define RANDOM_METRIC 5
+#define NUM_PARTICLE 50
+#define CYLIN_RAD 0.1
+
+#else
 #define CAM_POS (Vector3){30,0,30}
 #define Z_UP (Vector3){0,1,0}
-#define RANDOM_METRIC 20
-#define NUM_PARTICLE 50
-#define FPS 60
 #define PRANTL 10
 #define RAYLEIGH 28
 #define BETA 2.67
+#define TARGET_CAM (Vector3){0,9,30}
+#define RANDOM_METRIC 20
+#define NUM_PARTICLE 50
+#define CYLIN_RAD 0.1
+#endif
+
+#define NUM_TRAIL 300
+#define FOV 90
+#define FPS 60
 #define TERMINAL_GREEN (Color){1, 22, 5, 255}
 #define PARTICLE_SIZE 0.1
 #define INF 9999999999
 #define NINF -9999999999
-#define TARGET_CAM (Vector3){0,9,30}
 #define TRAIL_PER_FRAME 10
-#define CYLIN_RAD 0.1
 #define HEIGHT 1080
 #define WIDTH 1980
 

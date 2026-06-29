@@ -31,9 +31,15 @@ void updating_positions(Particle particles[NUM_PARTICLE],double frame_time){
 		Vector3 temp = {x,y,z};
 		for(int j=0;j<TRAIL_PER_FRAME;j++){
 			x=temp.x;y=temp.y;z=temp.z;
-			temp.x += (PRANTL* (y-x)) * delta;
-			temp.y += (x*(RAYLEIGH-z) -y) * delta;
-			temp.z += (x*y - BETA * z) * delta;
+#ifdef HALVORSEN
+			temp.x += (-HAL_A * x - 4.0*y - 4.0*z - y*y) * delta;
+			temp.y += (-HAL_A * y - 4.0*z - 4.0*x - z*z) * delta;
+			temp.z += (-HAL_A * z - 4.0*x - 4.0*y - x*x) * delta;
+#else
+			temp.x += (PRANTL * (y - x)) * delta;
+			temp.y += (x * (RAYLEIGH - z) - y) * delta;
+			temp.z += (x * y - BETA * z) * delta;
+#endif
 			particles[i].trail[particles[i].trail_head]=temp;
 			particles[i].trail_head=(particles[i].trail_head+1)%NUM_TRAIL;
 		}

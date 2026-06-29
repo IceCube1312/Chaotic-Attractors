@@ -1,5 +1,6 @@
 #include "lorenz.h"
 
+
 int main(int argc, char** argv){
 	
 	const int height = HEIGHT;
