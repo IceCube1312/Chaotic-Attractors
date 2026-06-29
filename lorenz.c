@@ -23,23 +23,13 @@ void particles_init(Particle particles[NUM_PARTICLE]){
 }
 
 void updating_positions(Particle particles[NUM_PARTICLE],double frame_time){
+	double delta = frame_time/TRAIL_PER_FRAME;
 	for(int i=0;i<NUM_PARTICLE;i++){
 		float x = particles[i].position.x; 
 		float y = particles[i].position.y; 
-		float z = particles[i].position.z; 
-		particles[i].position.x += (PRANTL* (y-x)) * frame_time;
-		particles[i].position.y += (x*(RAYLEIGH-z) -y) * frame_time;
-		particles[i].position.z += (x*y - BETA * z) * frame_time;
-	}
-}
-void updating_trails(Particle particles[NUM_PARTICLE],int times_per_frame, double frame_time){
-	for(int i=0;i<NUM_PARTICLE;i++){
-		float x = particles[i].position.x;
-		float y = particles[i].position.y;
 		float z = particles[i].position.z;
-    	        Vector3 temp = {x,y,z};
-		for(int j=0;j<times_per_frame;j++){
-			double delta = frame_time/times_per_frame;
+		Vector3 temp = {x,y,z};
+		for(int j=0;j<TRAIL_PER_FRAME;j++){
 			x=temp.x;y=temp.y;z=temp.z;
 			temp.x += (PRANTL* (y-x)) * delta;
 			temp.y += (x*(RAYLEIGH-z) -y) * delta;
@@ -47,5 +37,22 @@ void updating_trails(Particle particles[NUM_PARTICLE],int times_per_frame, doubl
 			particles[i].trail[particles[i].trail_head]=temp;
 			particles[i].trail_head=(particles[i].trail_head+1)%NUM_TRAIL;
 		}
+		particles[i].position=temp;
+	}
+}
+
+void Draw_trails(Particle particle){
+	for(int j=0;j<NUM_TRAIL-1;j++){
+		int current_index = (particle.trail_head -1 - j + NUM_TRAIL) % NUM_TRAIL;
+		Vector3 current = particle.trail[current_index];
+		int prev_index = (particle.trail_head - 2 - j + NUM_TRAIL) % NUM_TRAIL;
+		Vector3 prev_point = particle.trail[prev_index];
+
+		double ratio = j/(double)NUM_TRAIL;
+		int G =  255 * (1-ratio);
+		int B = 255 * ratio;
+		int R = 255 * ratio;
+//   	        DrawLine3D(current,prev_point,(Color){R,255,B,255});
+                DrawCylinderEx(current,prev_point,CYLIN_RAD,CYLIN_RAD,0,(Color){R,255,B,255});
 	}
 }

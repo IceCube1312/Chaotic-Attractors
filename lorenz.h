@@ -25,6 +25,7 @@
 #define NINF -9999999999
 #define TARGET_CAM (Vector3){0,8,30}
 #define TRAIL_PER_FRAME 10
+#define CYLIN_RAD 0.1
 
 typedef struct particle{
     Vector3 position;
@@ -36,5 +37,5 @@ typedef struct particle{
 void camera_init(Camera3D *camera, Vector3 positon, Vector3 target);
 void particles_init(Particle particles[NUM_PARTICLE]);
 void updating_positions(Particle particles[NUM_PARTICLE],double frame_time);
-void updating_trails(Particle particles[NUM_PARTICLE],int times_per_frame, double frame_time);
+void Draw_trails(Particle particle);
 #endif

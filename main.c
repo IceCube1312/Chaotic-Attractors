@@ -2,8 +2,8 @@
 
 int main(int argc, char** argv){
 	
-	const int height = 800;
-	const int width = 1200;
+	const int height = 1080;
+	const int width = 1980;
 
 	InitWindow(width, height,"NAME NAME NAME");
 	assert(IsWindowReady());
@@ -28,16 +28,9 @@ int main(int argc, char** argv){
 			BeginMode3D(camera);
 			ClearBackground(TERMINAL_GREEN);
 			updating_positions(particles,frame_time);
-			updating_trails(particles,TRAIL_PER_FRAME,frame_time);
 			for(int i=0;i<NUM_PARTICLE;i++){
 				DrawSphere(particles[i].position,PARTICLE_SIZE,WHITE);
-				for(int j=0;j<NUM_TRAIL-1;j++){
-					int current_index = (particles[i].trail_head -1 - j + NUM_TRAIL) % NUM_TRAIL;
-					Vector3 current = particles[i].trail[current_index];
-					int prev_index = (particles[i].trail_head - 2 - j + NUM_TRAIL) % NUM_TRAIL;
-					Vector3 prev_point = particles[i].trail[prev_index];
-					DrawLine3D(current,prev_point,WHITE);
-				}
+				Draw_trails(particles[i]);
 			}
 			EndMode3D();
 			EndDrawing();
